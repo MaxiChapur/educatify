@@ -1,0 +1,33 @@
+.songsGrid {
+  background-color: gray;
+  margin-bottom: 2%;
+  border-radius: 15px;
+  border-style: groove;
+  padding: 5px;
+  text-align: left;
+}
+
+.songsGrid:hover {
+  color: white;
+  background-color: black;
+}
+
+.songsGrid-text {
+  margin: 0px;
+  padding: 0px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.name {
+  font-size: large;
+}
+
+.artist {
+  font-size: small;
+}
+
+.album {
+  font-size: small;
+}
