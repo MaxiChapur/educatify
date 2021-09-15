@@ -1,11 +1,11 @@
 import { Grid } from '@material-ui/core'
 import './Card.css'
 
-const setDuration = (time) => {
+/* const setDuration = (time) => {
   let minutes = Math.floor(time / 60000)
   var seconds = ((time % 60000) / 1000).toFixed(0)
   return seconds === 60 ? minutes + 1 + ':00' : minutes + ':' + (seconds < 10 ? '0' : '') + seconds
-}
+} */
 
 const getArtists = (artists) => {
   let arrArtists = []
@@ -15,9 +15,10 @@ const getArtists = (artists) => {
   return arrArtists.toString()
 }
 
-const Card = ({ song }) => {
+const Card = ({ song, playSong }) => {
+  console.log(song)
   return (
-    <Grid container item className="songsGrid" xs={8}>
+    <Grid container item className="songsGrid" xs={8} onClick={() => playSong(song.track.preview_url)}>
       <Grid container item xs={2} justifyContent="center">
         <img src={song.track.album.images[2].url} alt="Holis" />
       </Grid>
