@@ -16,9 +16,14 @@ const getArtists = (artists) => {
 }
 
 const Card = ({ song, playSong }) => {
-  console.log(song)
   return (
-    <Grid container item className="songsGrid" xs={8} onClick={() => playSong(song.track.preview_url)}>
+    <Grid
+      container
+      item
+      className="songsGrid"
+      justifyContent="center"
+      xs={8}
+      onClick={() => playSong(song.track.preview_url)}>
       <Grid container item xs={2} justifyContent="center">
         <img src={song.track.album.images[2].url} alt="Holis" />
       </Grid>

@@ -4,7 +4,7 @@ import Card from './Card'
 const MyMusic = ({ songList, playSong }) => {
   return (
     <>
-      <Grid container style={{ display: 'flex', justifyContent: 'center' }}>
+      <Grid container className="grid_MyMusic" justifyContent="center">
         {songList.map((element, index) => {
           return <Card song={element} key={index} playSong={playSong} />
         })}

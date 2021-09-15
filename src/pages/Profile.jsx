@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react'
+import { Grid } from '@material-ui/core'
 import MyMusic from '../components/MyMusic'
 import { userLibrary } from '../services/userLibrary'
 import { userProfile } from '../services/userProfile'
 import ReactAudioPlayer from 'react-audio-player'
+import './Profile.css'
 
 const Profile = ({ location }) => {
   const [profile, setProfile] = useState()
@@ -23,8 +25,10 @@ const Profile = ({ location }) => {
 
   return (
     <div>
-      <h1>Liked songs of {profile && profile.display_name}</h1>
-      {selectedSong && <ReactAudioPlayer src={selectedSong} autoPlay controls />}
+      <Grid container justifyContent="center" direction="column" alignItems="center" className="header_Profile">
+        <h1>Liked songs of {profile && profile.display_name}</h1>
+        <ReactAudioPlayer className="player_Profile" src={selectedSong} autoPlay controls volume={0.1} />
+      </Grid>
       {songList && <MyMusic songList={songList.items} playSong={playSong} />}
     </div>
   )
