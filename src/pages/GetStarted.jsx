@@ -1,3 +1,5 @@
+import './GetStarted.css'
+
 const GetStarted = () => {
   const url = 'https://accounts.spotify.com/authorize?'
 
@@ -17,7 +19,9 @@ const GetStarted = () => {
         Welcome to Educatify. Use this website to see things in Spotifty <br />
         This web is made for educational purposes.
       </p>
-      <button onClick={() => (window.location.href = url + querystring)}>Get Started!</button>
+      <div className="button_GetStarted" onClick={() => (window.location.href = url + querystring)}>
+        Get Started
+      </div>
     </div>
   )
 }

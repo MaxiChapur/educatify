@@ -1,5 +1,6 @@
 import { Grid } from '@material-ui/core'
 import Card from './Card'
+import './MyMusic.css'
 
 const MyMusic = ({ songList, playSong }) => {
   return (

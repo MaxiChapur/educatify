@@ -1,5 +1,8 @@
 .header_Profile {
-  position: fixed;
+  position: sticky;
+  background-color: black;
+  top: 0px;
+  padding-bottom: 10px;
 }
 
 .player_Profile {
