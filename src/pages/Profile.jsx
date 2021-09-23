@@ -6,11 +6,11 @@ import { userProfile } from '../services/userProfile'
 import ReactAudioPlayer from 'react-audio-player'
 import './Profile.css'
 
-const Profile = ({ location }) => {
+const Profile = () => {
+  const token = window.localStorage.getItem('accessToken')
   const [profile, setProfile] = useState()
   const [songList, setSongList] = useState([])
   const [selectedSong, setSelectedSong] = useState([])
-  let token = new URLSearchParams(location.hash).get('#access_token')
 
   const playSong = (url) => {
     setSelectedSong(url)
