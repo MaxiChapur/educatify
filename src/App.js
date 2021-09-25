@@ -3,7 +3,7 @@ import { createBrowserHistory } from 'history'
 import GetStarted from './pages/GetStarted'
 import Profile from './pages/Profile'
 import Auth from './pages/Auth'
-import PrivateRoute from './components/PrivateRoute'
+import Albums from './pages/Albums'
 
 const App = () => {
   let history = createBrowserHistory()
@@ -12,9 +12,8 @@ const App = () => {
       <Switch>
         <Route component={GetStarted} exact path="/" />
         <Route component={Auth} exact path="/auth" />
-        <PrivateRoute>
-          <Route component={Profile} exact path="/profile" />
-        </PrivateRoute>
+        <Route component={Profile} exact path="/profile" />
+        <Route component={Albums} exact path="/albums" />
       </Switch>
     </Router>
   )

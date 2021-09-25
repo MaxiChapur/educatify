@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react'
-import { Grid } from '@material-ui/core'
+import { Grid, Box } from '@material-ui/core'
 import MyMusic from '../components/MyMusic'
 import { userLibrary } from '../services/userLibrary'
 import { userProfile } from '../services/userProfile'
 import ReactAudioPlayer from 'react-audio-player'
+import ButtonAppBar from '../components/ButtonAppBar'
 import './Profile.css'
 
 const Profile = () => {
@@ -17,20 +18,24 @@ const Profile = () => {
   }
 
   useEffect(() => {
-    Promise.all([userProfile(token), userLibrary(token)]).then((res) => {
-      setProfile(res[0].data)
-      setSongList(res[1])
+    userProfile(token).then((res) => setProfile(res.data))
+    userLibrary(token).then((res) => {
+      setSongList(res)
     })
   }, [token])
 
   return (
-    <div>
-      <Grid container justifyContent="center" direction="column" alignItems="center" className="header_Profile">
-        <h1>Liked songs of {profile && profile.display_name}</h1>
-        <ReactAudioPlayer className="player_Profile" src={selectedSong} autoPlay controls volume={0.1} />
-      </Grid>
-      {songList && <MyMusic songList={songList} playSong={playSong} />}
-    </div>
+    <>
+      <div>
+        <Grid container justifyContent="center" direction="column" alignItems="center" className="header_Profile">
+          <Box>
+            {profile && <ButtonAppBar name={profile.display_name} />}
+            <ReactAudioPlayer className="player" src={selectedSong} autoPlay controls volume={0.1} />
+          </Box>
+        </Grid>
+        {songList && <MyMusic songList={songList} playSong={playSong} />}
+      </div>
+    </>
   )
 }
 export default Profile

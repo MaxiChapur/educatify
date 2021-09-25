@@ -12,6 +12,10 @@
   background-color: black;
 }
 
+#image_Card {
+  width: 80%;
+}
+
 .songsGrid-text {
   margin: 0px;
   padding: 0px;
