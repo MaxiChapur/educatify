@@ -1,0 +1,14 @@
+#buttons_Main {
+  position: fixed;
+  bottom: 0px;
+  background-color: black;
+}
+
+.button_Main {
+  padding: 10px;
+  padding-left: 30px;
+  padding-right: 30px;
+  border-color: white;
+  border-style: solid;
+  border-radius: 15px;
+}
