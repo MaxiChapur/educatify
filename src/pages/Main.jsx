@@ -1,30 +1,25 @@
 import { Grid } from '@material-ui/core'
-import { useState, useEffect } from 'react'
-import { userProfile } from '../services/userProfile'
+import { useState } from 'react'
 import './Main.css'
-import Profile from './Profile'
+import Library from './Library'
+import Home from './Home'
 
 const Main = () => {
-  const [profile, setProfile] = useState()
   const [option, setOption] = useState('Home')
-  const token = window.localStorage.getItem('accessToken')
 
   const getOption = () => {
     switch (option) {
       case 'Library':
-        return <Profile />
+        return <Library />
+      case 'Home':
+        return <Home />
       default:
         return
     }
   }
 
-  useEffect(() => {
-    userProfile(token).then((res) => setProfile(res.data))
-  }, [token])
-
   return (
     <>
-      <div>{profile && <h1>{profile.display_name}'s Library</h1>}</div>
       {getOption()}
       <Grid container item id="buttons_Main" justifyContent="space-evenly">
         <div className="button_Main" onClick={() => setOption('Home')}>

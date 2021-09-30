@@ -3,9 +3,9 @@ import { Grid } from '@material-ui/core'
 import MyMusic from '../components/MyMusic'
 import { userLibrary } from '../services/userLibrary'
 import ReactAudioPlayer from 'react-audio-player'
-import './Profile.css'
+import './Library.css'
 
-const Profile = () => {
+const Library = () => {
   const token = window.localStorage.getItem('accessToken')
   const [songList, setSongList] = useState([])
   const [selectedSong, setSelectedSong] = useState([])
@@ -31,4 +31,4 @@ const Profile = () => {
     </>
   )
 }
-export default Profile
+export default Library
