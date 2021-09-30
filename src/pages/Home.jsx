@@ -28,7 +28,7 @@ const Home = () => {
               direction="column"
               alignItems="center"
               xs={4}
-              style={{ 'margin-left': '10px', 'margin-right': '10px' }}>
+              style={{ marginLeft: '10px', marginRight: '10px' }}>
               <img style={{ width: '128px', height: '128px' }} src={element.images[0].url} alt="" />
               <h4>{element.name}</h4>
             </Grid>
@@ -45,7 +45,7 @@ const Home = () => {
               direction="column"
               alignItems="center"
               xs={4}
-              style={{ 'margin-left': '10px', 'margin-right': '10px' }}>
+              style={{ marginLeft: '10px', marginRight: '10px' }}>
               <img style={{ width: '128px', height: '128px' }} src={element.images[0].url} alt="" />
               <h4>{element.name}</h4>
             </Grid>

@@ -3,6 +3,7 @@ import { useState } from 'react'
 import './Main.css'
 import Library from './Library'
 import Home from './Home'
+import Search from './Search'
 
 const Main = () => {
   const [option, setOption] = useState('Home')
@@ -13,6 +14,8 @@ const Main = () => {
         return <Library />
       case 'Home':
         return <Home />
+      case 'Search':
+        return <Search />
       default:
         return
     }
