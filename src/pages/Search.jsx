@@ -8,7 +8,7 @@ const Search = () => {
   const [category, setCategory] = useState()
 
   useEffect(() => {
-    categories(token).then((res) => setCategory(res.data))
+    categories(token).then((res) => setCategory(res))
   }, [token])
 
   return (
@@ -17,7 +17,7 @@ const Search = () => {
       <input id="input_Search"></input>
       <Grid style={{ marginTop: '60px', marginBottom: '80px' }} container item direction="row">
         {category &&
-          category.categories.items.map((element, index) => (
+          category.map((element, index) => (
             <Grid container item key={index} direction="column" alignItems="center" xs={6}>
               <img id="gridImage" src={element.icons[0].url} alt="" />
               <p>{element.name}</p>
