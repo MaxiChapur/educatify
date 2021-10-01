@@ -23,7 +23,7 @@ const Card = ({ song, playSong }) => {
       className="songsGrid"
       justifyContent="center"
       xs={10}
-      onClick={() => playSong(song.track.preview_url)}>
+      onClick={() => playSong(song.track.name, song.track.album.images[2].url, song.track.preview_url)}>
       <Grid container item xs={2} justifyContent="center">
         <img id="image_Card" src={song.track.album.images[2].url} alt="" />
       </Grid>
