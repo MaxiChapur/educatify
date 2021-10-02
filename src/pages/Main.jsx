@@ -11,6 +11,7 @@ const Main = () => {
   const [selectedSong, setSelectedSong] = useState()
 
   const refreshPlayer = (name, image, url) => {
+    document.getElementById('player').pause()
     let data = {
       name: name,
       image: image,
@@ -34,18 +35,18 @@ const Main = () => {
 
   return (
     <>
+      <Player data={selectedSong} />
       {getOption()}
-      {selectedSong && <Player data={selectedSong} />}
       <Grid container item id="controlButtons_Main" justifyContent="space-evenly">
-        <div className="button_Main" onClick={() => setOption('Home')}>
+        <Grid className="button_Main" onClick={() => setOption('Home')}>
           Home
-        </div>
-        <div className="button_Main" onClick={() => setOption('Library')}>
+        </Grid>
+        <Grid className="button_Main" onClick={() => setOption('Library')}>
           Library
-        </div>
-        <div className="button_Main" onClick={() => setOption('Search')}>
+        </Grid>
+        <Grid className="button_Main" onClick={() => setOption('Search')}>
           Search
-        </div>
+        </Grid>
       </Grid>
     </>
   )
