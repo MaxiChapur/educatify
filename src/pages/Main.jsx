@@ -35,9 +35,9 @@ const Main = () => {
 
   return (
     <>
-      <Player data={selectedSong} />
       {getOption()}
-      <Grid container item id="controlButtons_Main" justifyContent="space-evenly">
+      <Grid container item id="controlButtons_Main" justifyContent="space-evenly" alignItems="center">
+        <Player data={selectedSong} />
         <Grid className="button_Main" onClick={() => setOption('Home')}>
           Home
         </Grid>

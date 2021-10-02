@@ -1,4 +1,7 @@
 import { Grid } from '@material-ui/core'
+import PlayIcon from '../assets/PlayIcon'
+import PauseIcon from '../assets/PauseIcon'
+
 import './Player.css'
 
 const Player = ({ data }) => {
@@ -11,28 +14,37 @@ const Player = ({ data }) => {
     }
   }
 
-  const controls = () => {
+  const play_pause = () => {
     if (!audio.paused) {
       data.url = ''
       audio.pause()
     } else audio.play()
   }
 
+  const controls = (bool) => {
+    switch (bool) {
+      case true:
+        return <PlayIcon func={play_pause} />
+      case false:
+        return <PauseIcon func={play_pause} />
+      default:
+        return
+    }
+  }
+
+  audio.src = data.url
+
   return (
     <Grid id="player_controls" container style={{ positon: 'fixed', top: '10px' }}>
-      <svg
-        onClick={() => controls()}
-        xmlns="http://www.w3.org/2000/svg"
-        height="48px"
-        viewBox="0 0 24 24"
-        width="48px"
-        fill="#000000">
-        <path d="M0 0h24v24H0V0z" fill="none" />
-        <path d="M10 16.5l6-4.5-6-4.5zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" />
-      </svg>
-      <img src={data.image} alt="" />
-      <p>{data.name}</p>
-      <audio id="player" src={data.url} autoPlay volume={0.2}></audio>
+      <Grid item xs={2}>
+        {controls(audio.paused)}
+      </Grid>
+      <Grid item xs={2}>
+        <img src={data.image} alt="" />
+      </Grid>
+      <Grid container item xs={8} justifyContent="flex-start">
+        <p>{data.name}</p>
+      </Grid>
     </Grid>
   )
 }
