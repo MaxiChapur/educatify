@@ -1,4 +1,5 @@
 import { Grid } from '@material-ui/core'
+import { useState } from 'react'
 import PlayIcon from '../assets/PlayIcon'
 import PauseIcon from '../assets/PauseIcon'
 
@@ -6,6 +7,8 @@ import './Player.css'
 
 const Player = ({ data }) => {
   const audio = document.getElementById('player')
+  const [playing, setPlaying] = useState(false)
+
   if (typeof data === 'undefined') {
     data = {
       name: 'Pick a song',
@@ -14,36 +17,36 @@ const Player = ({ data }) => {
     }
   }
 
-  const play_pause = () => {
-    if (!audio.paused) {
-      data.url = ''
-      audio.pause()
-    } else audio.play()
+  const handleAudio = () => {
+    if (audio.paused) {
+      audio.play()
+    } else audio.pause()
   }
 
-  const controls = (bool) => {
-    switch (bool) {
-      case true:
-        return <PlayIcon func={play_pause} />
-      case false:
-        return <PauseIcon func={play_pause} />
-      default:
-        return
+  const controls = () => {
+    if (!playing) {
+      return <PauseIcon />
+    } else {
+      return <PlayIcon />
     }
   }
 
-  audio.src = data.url
-
   return (
     <Grid id="player_controls" container style={{ positon: 'fixed', top: '10px' }}>
-      <Grid item xs={2}>
-        {controls(audio.paused)}
+      <Grid
+        onClick={() => {
+          playing === false ? setPlaying(true) : setPlaying(false)
+          handleAudio()
+        }}
+        item
+        xs={2}>
+        {controls()}
       </Grid>
       <Grid item xs={2}>
-        <img src={data.image} alt="" />
+        <img style={{ paddingTop: '5px' }} src={data.image} alt="" />
       </Grid>
-      <Grid container item xs={8} justifyContent="flex-start">
-        <p>{data.name}</p>
+      <Grid style={{ overflowX: 'hidden', paddingLeft: '80px' }} container item xs={8} justifyContent="flex-start">
+        <p id="playerText">{data.name}</p>
       </Grid>
     </Grid>
   )

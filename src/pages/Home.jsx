@@ -3,10 +3,23 @@ import { newReleases } from '../services/newReleases'
 import { featuredPlaylist } from '../services/featuredPlaylist'
 import { Grid } from '@material-ui/core'
 
-const Home = () => {
+const Home = ({ option }) => {
   const token = window.localStorage.getItem('accessToken')
   const [releases, setReleases] = useState()
   const [featured, setFeatured] = useState()
+
+  const trackAlbum = (name, image, artist, url) => {
+    let arr = artist.map((element) => {
+      return element.name
+    })
+    const album = {
+      name: name,
+      image: image,
+      artist: arr.toString(),
+      url: url,
+    }
+    option('Album', album)
+  }
 
   useEffect(() => {
     Promise.all([newReleases(token), featuredPlaylist(token)]).then((res) => {
@@ -22,6 +35,7 @@ const Home = () => {
         {releases &&
           releases.albums.items.map((element, index) => (
             <Grid
+              onClick={() => trackAlbum(element.name, element.images, element.artists, element.href)}
               container
               item
               key={index}

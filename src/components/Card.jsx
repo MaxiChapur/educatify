@@ -1,12 +1,6 @@
 import { Grid } from '@material-ui/core'
 import './Card.css'
 
-/* const setDuration = (time) => {
-  let minutes = Math.floor(time / 60000)
-  var seconds = ((time % 60000) / 1000).toFixed(0)
-  return seconds === 60 ? minutes + 1 + ':00' : minutes + ':' + (seconds < 10 ? '0' : '') + seconds
-} */
-
 const getArtists = (artists) => {
   let arrArtists = []
   artists.forEach((element) => {

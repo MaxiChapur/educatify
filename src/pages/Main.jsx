@@ -5,13 +5,16 @@ import Library from './Library'
 import Home from './Home'
 import Search from './Search'
 import Player from '../components/Player'
+import Album from './Albums'
 
 const Main = () => {
   const [option, setOption] = useState('Home')
   const [selectedSong, setSelectedSong] = useState()
+  const [data, setData] = useState()
+  const audio = document.getElementById('player')
 
   const refreshPlayer = (name, image, url) => {
-    document.getElementById('player').pause()
+    audio.src = url
     let data = {
       name: name,
       image: image,
@@ -20,14 +23,21 @@ const Main = () => {
     setSelectedSong(data)
   }
 
+  const switchPages = (page, data) => {
+    setData(data)
+    setOption(page)
+  }
+
   const getOption = () => {
     switch (option) {
       case 'Library':
         return <Library playSong={refreshPlayer} />
       case 'Home':
-        return <Home />
+        return <Home option={switchPages} />
       case 'Search':
         return <Search />
+      case 'Album':
+        return <Album data={data} playSong={refreshPlayer} />
       default:
         return
     }
@@ -37,7 +47,7 @@ const Main = () => {
     <>
       {getOption()}
       <Grid container item id="controlButtons_Main" justifyContent="space-evenly" alignItems="center">
-        <Player data={selectedSong} />
+        {selectedSong && <Player data={selectedSong} />}
         <Grid className="button_Main" onClick={() => setOption('Home')}>
           Home
         </Grid>
