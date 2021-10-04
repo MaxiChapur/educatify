@@ -6,12 +6,14 @@ import Home from './Home'
 import Search from './Search'
 import Player from '../components/Player'
 import Album from './Albums'
+import Playlists from './Playlists'
 
 const Main = () => {
   const [option, setOption] = useState('Home')
   const [selectedSong, setSelectedSong] = useState()
   const [data, setData] = useState()
   const audio = document.getElementById('player')
+  audio.volume = 0.3
 
   const refreshPlayer = (name, image, url) => {
     audio.src = url
@@ -38,6 +40,8 @@ const Main = () => {
         return <Search />
       case 'Album':
         return <Album data={data} playSong={refreshPlayer} />
+      case 'Playlist':
+        return <Playlists data={data} playSong={refreshPlayer} />
       default:
         return
     }

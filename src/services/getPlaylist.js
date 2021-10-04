@@ -1,10 +1,9 @@
 import axios from 'axios'
-const url = 'https://api.spotify.com/v1/me/playlists'
 
-export const userPlaylist = async (token) => {
+export const getPlaylist = async (token, url) => {
   const request = await axios({
     method: 'get',
-    url: url,
+    url: url + '/tracks?offset=0&limit=100',
     headers: {
       Authorization: 'Bearer ' + token,
       Accept: 'application/json',

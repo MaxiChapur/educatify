@@ -21,6 +21,16 @@ const Home = ({ option }) => {
     option('Album', album)
   }
 
+  const trackPlaylist = (name, description, image, url) => {
+    const playlist = {
+      name: name,
+      description: description,
+      image: image,
+      url: url,
+    }
+    option('Playlist', playlist)
+  }
+
   useEffect(() => {
     Promise.all([newReleases(token), featuredPlaylist(token)]).then((res) => {
       setReleases(res[0].data)
@@ -53,6 +63,7 @@ const Home = ({ option }) => {
         {featured &&
           featured.playlists.items.map((element, index) => (
             <Grid
+              onClick={() => trackPlaylist(element.name, element.description, element.images, element.href)}
               container
               item
               key={index}

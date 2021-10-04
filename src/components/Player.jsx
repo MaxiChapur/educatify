@@ -7,7 +7,7 @@ import './Player.css'
 
 const Player = ({ data }) => {
   const audio = document.getElementById('player')
-  const [playing, setPlaying] = useState(false)
+  const [playing, setPlaying] = useState()
 
   if (typeof data === 'undefined') {
     data = {
@@ -35,7 +35,7 @@ const Player = ({ data }) => {
     <Grid id="player_controls" container style={{ positon: 'fixed', top: '10px' }}>
       <Grid
         onClick={() => {
-          playing === false ? setPlaying(true) : setPlaying(false)
+          audio.paused === false ? setPlaying(true) : setPlaying(false)
           handleAudio()
         }}
         item
