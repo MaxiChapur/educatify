@@ -4,12 +4,25 @@ import { Grid } from '@material-ui/core'
 import { searchContent } from '../services/searchContent'
 import './Search.css'
 
-const Search = ({ option }) => {
+const Search = ({ option, playSong }) => {
   const token = window.localStorage.getItem('accessToken')
   const [category, setCategory] = useState()
   const [results, setResults] = useState()
   const [showResults, setShowResults] = useState(false)
   let string
+
+  const trackAlbum = (name, image, artist, url) => {
+    let arr = artist.map((element) => {
+      return element.name
+    })
+    const album = {
+      name: name,
+      image: image,
+      artist: arr.toString(),
+      url: url,
+    }
+    option('Album', album)
+  }
 
   const trackCategory = (name, url) => {
     let data = {
@@ -32,6 +45,24 @@ const Search = ({ option }) => {
       case true:
         return (
           <div style={{ paddingBottom: '120px' }}>
+            <h1>Songs:</h1>
+            <Grid container item direction="column">
+              {results &&
+                results.tracks.items.map((element, index) => (
+                  <Grid
+                    onClick={() => playSong(element.name, element.album.images[2].url, element.preview_url)}
+                    container
+                    item
+                    direction="row"
+                    key={index}
+                    justifyContent="flex-start"
+                    alignItems="flex-start"
+                    style={{ paddingLeft: '10px', paddingBottom: '10px' }}>
+                    <img src={element.album.images[2].url} alt="" />
+                    <h4>{element.name}</h4>
+                  </Grid>
+                ))}
+            </Grid>
             <h1>Artists:</h1>
             <Grid container item direction="column">
               {results &&
@@ -52,8 +83,24 @@ const Search = ({ option }) => {
                     )
                 )}
             </Grid>
-            <h1>Songs:</h1>
             <h1>Albums:</h1>
+            <Grid container item direction="column">
+              {results &&
+                results.albums.items.map((element, index) => (
+                  <Grid
+                    onClick={() => trackAlbum(element.name, element.images[0].url, element.artists, element.href)}
+                    container
+                    item
+                    direction="row"
+                    key={index}
+                    justifyContent="flex-start"
+                    alignItems="flex-start"
+                    style={{ paddingLeft: '10px', paddingBottom: '10px' }}>
+                    <img src={element.images[2].url} alt="" />
+                    <h4>{element.name}</h4>
+                  </Grid>
+                ))}
+            </Grid>
           </div>
         )
       default:

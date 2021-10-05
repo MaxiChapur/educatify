@@ -38,7 +38,7 @@ const Main = () => {
       case 'Home':
         return <Home option={switchPages} />
       case 'Search':
-        return <Search option={switchPages} />
+        return <Search option={switchPages} playSong={refreshPlayer} />
       case 'Album':
         return <Album data={data} playSong={refreshPlayer} />
       case 'Playlist':
