@@ -3,7 +3,7 @@ let arr = []
 
 export const categories = async (token, url) => {
   if (typeof url === 'undefined') {
-    url = 'https://api.spotify.com/v1/browse/categories?limit=50'
+    url = 'https://api.spotify.com/v1/browse/categories?limit=50&country=AR'
   }
 
   const request = await axios({

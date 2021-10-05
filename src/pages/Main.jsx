@@ -7,6 +7,7 @@ import Search from './Search'
 import Player from '../components/Player'
 import Album from './Albums'
 import Playlists from './Playlists'
+import BrowseCategory from './BrowseCategory'
 
 const Main = () => {
   const [option, setOption] = useState('Home')
@@ -37,11 +38,13 @@ const Main = () => {
       case 'Home':
         return <Home option={switchPages} />
       case 'Search':
-        return <Search />
+        return <Search option={switchPages} />
       case 'Album':
         return <Album data={data} playSong={refreshPlayer} />
       case 'Playlist':
         return <Playlists data={data} playSong={refreshPlayer} />
+      case 'Browse Category':
+        return <BrowseCategory data={data} option={switchPages} />
       default:
         return
     }

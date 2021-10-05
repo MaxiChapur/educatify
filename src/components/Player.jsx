@@ -1,5 +1,5 @@
 import { Grid } from '@material-ui/core'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import PlayIcon from '../assets/PlayIcon'
 import PauseIcon from '../assets/PauseIcon'
 
@@ -7,7 +7,7 @@ import './Player.css'
 
 const Player = ({ data }) => {
   const audio = document.getElementById('player')
-  const [playing, setPlaying] = useState()
+  const [playing, setPlaying] = useState(false)
 
   if (typeof data === 'undefined') {
     data = {
@@ -17,10 +17,16 @@ const Player = ({ data }) => {
     }
   }
 
+  useEffect(() => {
+    setPlaying(true)
+  }, [data])
+
   const handleAudio = () => {
     if (audio.paused) {
       audio.play()
-    } else audio.pause()
+    } else {
+      audio.pause()
+    }
   }
 
   const controls = () => {
@@ -35,7 +41,7 @@ const Player = ({ data }) => {
     <Grid id="player_controls" container style={{ positon: 'fixed', top: '10px' }}>
       <Grid
         onClick={() => {
-          audio.paused === false ? setPlaying(true) : setPlaying(false)
+          playing === false ? setPlaying(true) : setPlaying(false)
           handleAudio()
         }}
         item
