@@ -24,6 +24,15 @@ const Search = ({ option, playSong }) => {
     option('Album', album)
   }
 
+  const trackArtists = (name, image, url) => {
+    const artist = {
+      name: name,
+      image: image,
+      url: url,
+    }
+    option('Artist', artist)
+  }
+
   const trackCategory = (name, url) => {
     let data = {
       name: name,
@@ -58,8 +67,8 @@ const Search = ({ option, playSong }) => {
                     justifyContent="flex-start"
                     alignItems="flex-start"
                     style={{ paddingLeft: '10px', paddingBottom: '10px' }}>
-                    <img src={element.album.images[2].url} alt="" />
-                    <h4>{element.name}</h4>
+                    <img className="searchImage" src={element.album.images[2].url} alt="" />
+                    <h4 className="searchText">{element.name}</h4>
                   </Grid>
                 ))}
             </Grid>
@@ -70,6 +79,7 @@ const Search = ({ option, playSong }) => {
                   (element, index) =>
                     element.images[2] && (
                       <Grid
+                        onClick={() => trackArtists(element.name, element.images[1].url, element.href)}
                         style={{ paddingLeft: '10px', paddingBottom: '10px' }}
                         container
                         item
@@ -77,8 +87,8 @@ const Search = ({ option, playSong }) => {
                         direction="row"
                         justifyContent="flex-start"
                         alignItems="flex-start">
-                        <img style={{ width: '20%' }} src={element.images[2].url} alt="" />
-                        <h4>{element.name}</h4>
+                        <img className="searchImage" src={element.images[2].url} alt="" />
+                        <h4 className="searchText">{element.name}</h4>
                       </Grid>
                     )
                 )}
@@ -88,7 +98,7 @@ const Search = ({ option, playSong }) => {
               {results &&
                 results.albums.items.map((element, index) => (
                   <Grid
-                    onClick={() => trackAlbum(element.name, element.images[0].url, element.artists, element.href)}
+                    onClick={() => trackAlbum(element.name, element.images, element.artists, element.href)}
                     container
                     item
                     direction="row"
@@ -96,8 +106,8 @@ const Search = ({ option, playSong }) => {
                     justifyContent="flex-start"
                     alignItems="flex-start"
                     style={{ paddingLeft: '10px', paddingBottom: '10px' }}>
-                    <img src={element.images[2].url} alt="" />
-                    <h4>{element.name}</h4>
+                    <img className="searchImage" src={element.images[2].url} alt="" />
+                    <h4 className="searchText">{element.name}</h4>
                   </Grid>
                 ))}
             </Grid>
@@ -137,7 +147,7 @@ const Search = ({ option, playSong }) => {
       <form
         onSubmit={(event) => {
           event.preventDefault()
-          search()
+          string !== '' ? search() : setShowResults(false)
         }}>
         <input id="input_Search" onChange={(event) => (string = event.target.value)} />
       </form>

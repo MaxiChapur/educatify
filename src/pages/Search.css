@@ -8,3 +8,11 @@
   width: 128px;
   height: 128px;
 }
+
+.searchImage {
+  width: 20%;
+}
+
+.searchText {
+  margin-left: 10px;
+}

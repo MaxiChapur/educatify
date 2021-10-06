@@ -8,6 +8,7 @@ import Player from '../components/Player'
 import Album from './Albums'
 import Playlists from './Playlists'
 import BrowseCategory from './BrowseCategory'
+import Artists from './Artists'
 
 const Main = () => {
   const [option, setOption] = useState('Home')
@@ -45,6 +46,8 @@ const Main = () => {
         return <Playlists data={data} playSong={refreshPlayer} />
       case 'Browse Category':
         return <BrowseCategory data={data} option={switchPages} />
+      case 'Artist':
+        return <Artists data={data} playSong={refreshPlayer} />
       default:
         return
     }
