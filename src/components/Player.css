@@ -16,3 +16,18 @@
     transform: translate(-100%, 0);
   }
 }
+
+.img_player {
+  padding-top: 5px;
+}
+
+.button_player {
+  position: relative;
+}
+
+@media (min-width: 992px) {
+  .img_player {
+    height: 50%;
+    width: 50%;
+  }
+}

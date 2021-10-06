@@ -40,6 +40,7 @@ const Player = ({ data }) => {
   return (
     <Grid id="player_controls" container style={{ positon: 'fixed', top: '10px' }}>
       <Grid
+        className="button_player"
         onClick={() => {
           playing === false ? setPlaying(true) : setPlaying(false)
           handleAudio()
@@ -49,7 +50,7 @@ const Player = ({ data }) => {
         {controls()}
       </Grid>
       <Grid item xs={2}>
-        <img style={{ paddingTop: '5px' }} src={data.image} alt="" />
+        <img src={data.image} alt="" />
       </Grid>
       <Grid style={{ overflowX: 'hidden', paddingLeft: '80px' }} container item xs={8} justifyContent="flex-start">
         <p id="playerText">{data.name}</p>
