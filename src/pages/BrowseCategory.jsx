@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { findCategory } from '../services/findCategory'
 import { Grid } from '@material-ui/core'
+import { Redirect } from 'react-router'
 
 const BrowseCategory = ({ data, option }) => {
   const token = window.localStorage.getItem('accessToken')
@@ -17,9 +18,11 @@ const BrowseCategory = ({ data, option }) => {
   }
 
   useEffect(() => {
-    findCategory(token, data.url).then((res) => {
-      setPlaylist(res.data)
-    })
+    findCategory(token, data.url)
+      .then((res) => {
+        setPlaylist(res.data)
+      })
+      .catch(() => <Redirect to="/" />)
   }, [data, token])
 
   return (

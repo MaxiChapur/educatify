@@ -2,6 +2,7 @@ import { categories } from '../services/categories'
 import { useState, useEffect } from 'react'
 import { Grid } from '@material-ui/core'
 import { searchContent } from '../services/searchContent'
+import { Redirect } from 'react-router'
 import './Search.css'
 
 const Search = ({ option, playSong }) => {
@@ -43,7 +44,6 @@ const Search = ({ option, playSong }) => {
 
   const search = () => {
     searchContent(token, string).then((res) => {
-      console.log(res.data)
       setResults(res.data)
       setShowResults(true)
     })
@@ -136,9 +136,11 @@ const Search = ({ option, playSong }) => {
   }
 
   useEffect(() => {
-    categories(token).then((res) => {
-      setCategory(res)
-    })
+    categories(token)
+      .then((res) => {
+        setCategory(res)
+      })
+      .catch(() => <Redirect to="/" />)
   }, [token])
 
   return (

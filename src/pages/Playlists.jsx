@@ -2,14 +2,17 @@ import { useEffect, useState } from 'react'
 import { Grid } from '@material-ui/core'
 import { getPlaylist } from '../services/getPlaylist'
 import Card from '../components/Card'
+import { Redirect } from 'react-router'
 
 const Playlists = ({ data, playSong }) => {
   const token = window.localStorage.getItem('accessToken')
   const [songs, setSongs] = useState()
   useEffect(() => {
-    getPlaylist(token, data.url).then((res) => {
-      setSongs(res.data)
-    })
+    getPlaylist(token, data.url)
+      .then((res) => {
+        setSongs(res.data)
+      })
+      .catch(() => <Redirect to="/" />)
   }, [data, token])
 
   return (

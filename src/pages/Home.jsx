@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { newReleases } from '../services/newReleases'
 import { featuredPlaylist } from '../services/featuredPlaylist'
 import { Grid } from '@material-ui/core'
+import { Redirect } from 'react-router'
 
 const Home = ({ option }) => {
   const token = window.localStorage.getItem('accessToken')
@@ -32,10 +33,12 @@ const Home = ({ option }) => {
   }
 
   useEffect(() => {
-    Promise.all([newReleases(token), featuredPlaylist(token)]).then((res) => {
-      setReleases(res[0].data)
-      setFeatured(res[1].data)
-    })
+    Promise.all([newReleases(token), featuredPlaylist(token)])
+      .then((res) => {
+        setReleases(res[0].data)
+        setFeatured(res[1].data)
+      })
+      .catch(() => <Redirect to="/" />)
   }, [token])
 
   return (

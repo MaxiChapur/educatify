@@ -1,16 +1,19 @@
 import { useEffect, useState } from 'react'
 import { Grid } from '@material-ui/core'
 import { getArtists } from '../services/getArtist'
+import { Redirect } from 'react-router'
 
 const Artists = ({ data, playSong }) => {
   const token = window.localStorage.getItem('accessToken')
   const [artists, setArtists] = useState()
 
   useEffect(() => {
-    getArtists(token, data.url).then((res) => {
-      setArtists(res.data)
-      console.log(res.data)
-    })
+    getArtists(token, data.url)
+      .then((res) => {
+        setArtists(res.data)
+        console.log(res.data)
+      })
+      .catch(() => <Redirect to="/" />)
   }, [data, token])
 
   return (

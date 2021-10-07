@@ -30,7 +30,7 @@ const Player = ({ data }) => {
   }
 
   const controls = () => {
-    if (!playing) {
+    if (playing) {
       return <PauseIcon />
     } else {
       return <PlayIcon />
