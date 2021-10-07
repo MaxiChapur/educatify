@@ -18,6 +18,7 @@ const Library = ({ playSong }) => {
 
   return (
     <>
+      <h3>List of liked songs!</h3>
       <div>{songList && <MyMusic songList={songList} playSong={playSong} />}</div>
     </>
   )
