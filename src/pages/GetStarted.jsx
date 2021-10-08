@@ -7,6 +7,7 @@ const GetStarted = () => {
     client_id: '2caa5284ddc648bc983617039538a30c',
     response_type: 'token',
     redirect_uri: 'https://educatify.herokuapp.com/auth',
+    //redirect_uri: 'http://localhost:3000/auth', ---> Only for testing/developing
     scope: 'user-read-private user-read-email user-library-read',
   }
 

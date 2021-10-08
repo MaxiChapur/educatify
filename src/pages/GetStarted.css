@@ -7,4 +7,5 @@
 
 .button_GetStarted:hover {
   cursor: pointer;
+  user-select: none;
 }
